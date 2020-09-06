@@ -40,4 +40,14 @@ def removeStudent(checkpoint, name):
                 newDict.update({key: value})
         ref.set(newDict)
 
+def chatBox(number, checkpoint, name, message):
+    # Adds a student to the checkpoint
+    chatbox_db_name = checkpoint + "_chat"
+    entry = name + ": " + message
+    ref = db.reference(chatbox_db_name)
+    ref.update({
+        number: message
+    })
+
+
 
