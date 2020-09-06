@@ -1,5 +1,5 @@
 #Define a student object
-
+print("Hello World")
 class Student:
 
     name = ""
