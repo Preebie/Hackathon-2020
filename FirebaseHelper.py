@@ -43,11 +43,12 @@ def removeStudent(checkpoint, name):
 
 def AddChat(number, checkpoint, name, message):
     # Adds a student to the checkpoint
-    chatboxdbname = checkpoint + "_chat"
-    entry = name + ": " + message
-    ref = db.reference(chatboxdbname)
-    numbe = str(number)
-    ref.push(entry)
+    if message:
+        chatboxdbname = checkpoint + "_chat"
+        entry = name + ": " + message
+        ref = db.reference(chatboxdbname)
+        numbe = str(number)
+        ref.push(entry)
 
 def getChats(checkpoint):#objects at the specified checkpoint
     chatdb = checkpoint + "_chat"

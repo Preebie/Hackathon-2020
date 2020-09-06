@@ -46,6 +46,7 @@ def Zachary():
 
 
 def ZacharyChatbox():
+    pushStudent("Zachry", session["user"], session["email"])
     q = " "
     counter = 0
     for chat in getChats("Zachry"):
@@ -55,9 +56,7 @@ def ZacharyChatbox():
     if request.method == "POST":
         message = request.form["chat"]
         AddChat(ts,"Zachry", session["user"], message)
-
-
-    return render_template("ZacharyChatbox.html",content = q)
+    return render_template("ZacharyChatbox.html",chats = getChats("Zachry"))
 
 @app.route('/my-link/')
 def my_link():
