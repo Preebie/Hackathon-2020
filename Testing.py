@@ -6,7 +6,7 @@ app = Flask(__name__)
 app.secret_key = "hello"
 app.permanent_session_lifetime = timedelta(minutes=5)
 
-@app.route("/")
+@app.route("/", methods = ["POST", "GET"])
 def home():
     return render_template("home_page.html")
 
