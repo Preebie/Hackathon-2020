@@ -37,5 +37,7 @@ def removeStudent(checkpoint, name):
         newDict = {}
         for key, value in result.items():
             if not key == name:
-                newDict.update({key: value})
+                newDict.update({
+                    key: value
+                })
         ref.set(newDict)
