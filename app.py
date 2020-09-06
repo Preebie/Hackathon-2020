@@ -32,9 +32,12 @@ def user():
         user = session["user"]
         email = session["email"]
         pushStudent("Zachry", user, email)
-        return f"<h1>{user}{email}<h1>"
+        return render_template("Locations.html")
     else:
         return redirect(url_for("login"))
+@app.route("/Zachary")
+def Zachary():
+    return render_template("Zachary.html")
 
 @app.route("/logout")
 def logout():
