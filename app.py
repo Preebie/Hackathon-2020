@@ -39,6 +39,11 @@ def Zachary():
 
     return render_template("Zachary.html")
 
+@app.route("/MSC")
+def MSC():
+
+    return render_template("MSC.html")
+
 @app.route('/my-link/')
 def my_link():
   q = " "
@@ -47,6 +52,15 @@ def my_link():
       counter += 1
       q = q + "<br>" + str(counter)+". Name: " + student.name + "<br>" + "Email: " + student.email + "</br>"
   return q
+
+@app.route('/MSC-link/')
+def MSC_link():
+    q = " "
+    counter = 0
+    for student in getStudents("Zachry"):
+        counter += 1
+        q = q + "<br>" + str(counter) + ". Name: " + student.name + "<br>" + "Email: " + student.email + "</br>"
+    return q
 
 @app.route("/logout")
 def logout():
