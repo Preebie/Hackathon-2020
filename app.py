@@ -57,7 +57,7 @@ def my_link():
 def MSC_link():
     q = " "
     counter = 0
-    for student in getStudents("Zachry"):
+    for student in getStudents("MSC"):
         counter += 1
         q = q + "<br>" + str(counter) + ". Name: " + student.name + "<br>" + "Email: " + student.email + "</br>"
     return q
