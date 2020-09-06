@@ -39,7 +39,7 @@ def Zachary():
 
     return render_template("Zachary.html")
 
-@app.route('/my-link/')
+@app.route('/Zachary-link/')
 def my_link():
   q = " "
   counter = 0
