@@ -10,8 +10,8 @@ firebase_admin.initialize_app(cred, {
     'databaseURL': "https://howdy-hack.firebaseio.com"
 })
 
-def getStudents(checkpoint):
-#Returns a list of Student objects at the specified checkpoint
+#Returns a list of Student
+def getStudents(checkpoint):#objects at the specified checkpoint
     ref = db.reference(checkpoint)
     result = ref.get()
     if result:
