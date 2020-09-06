@@ -1,7 +1,13 @@
 {% extends "base.html" %}
 {% block title %}User Page{% endblock %}
 {% block content %}
+   <body style="background-color:maroon;">
+   </body>
+<form action="http://127.0.0.1:5000/Zachary-link/" method="get">
+    <p style = "text-align:center"><input type="submit" name="nm" value="Go to Zachary!"></p>
+<form action="http://127.0.0.1:5000/Evans" method="get">
+    <p style = "text-align:center"><input type="submit" name="nm" value="Go to Evans!"></p>
+<form action="http://127.0.0.1:5000/MSC-link/" method="get">
+    <p style = "text-align:center"><input type="submit" name="nm" value="Go to MSC!"></p>
 
-<form action="http://127.0.0.1:5000/Zachary" method="get">
-    <p><input type="submit" name="nm" value="Go to Zachary!"></p>
 {% endblock %}
