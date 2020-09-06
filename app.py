@@ -47,7 +47,7 @@ def my_link():
   counter = 0
   for student in getStudents("Zachry"):
       counter += 1
-      q = q + "<br>" + str(counter)+". " + student.name + " " + student.email + "</br>"
+      q = q + "<br>" + str(counter)+". Name: " + student.name + "<br>" + "Email: " + student.email + "</br>"
   return q
 
 @app.route("/logout")
