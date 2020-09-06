@@ -1,11 +1,13 @@
 #Define a student object
-print("Hello World")
+
 class Student:
 
-    name = ""
-    email = ""
+    def __init__(self, name, email):
+        self.name = name
+        self.email = email
 
-    def __init__(self):
-        pass
+    def getName(self):
+        return self.name
 
-
+    def getEmail(self):
+        return self.email
