@@ -1,6 +1,7 @@
 #Use this for any flask implementation
 from flask import Flask, redirect, url_for, render_template, request, session, flash
 from datetime import timedelta
+from FirebaseHelper import pushStudent
 
 app = Flask(__name__)
 app.secret_key = "hello"
@@ -13,9 +14,11 @@ def home():
 @app.route("/login", methods=["POST", "GET"])
 def login():
     if request.method == "POST":
-        session.permanent = True
+        #session.permanent = True
         user = request.form["nm"]
+        email = request.form["email"]
         session["user"] = user
+        session["email"] = email
         return redirect(url_for("user"))
     else:
         if "user" in session:
@@ -27,7 +30,9 @@ def login():
 def user():
     if "user" in session:
         user = session["user"]
-        return f"<h1>{user}<h1>"
+        email = session["email"]
+        pushStudent("Zachry", user, email)
+        return f"<h1>{user}{email}<h1>"
     else:
         return redirect(url_for("login"))
 
