@@ -2,12 +2,13 @@
 {% block title %}User Page{% endblock %}
 
 {% block content %}
-
-<div style="height:100px;width:300px;overflow:auto;background-color:yellowgreen;color:white;scrollbar-base-color:gold;font-family:sans-serif;padding:10px;display: flex;flex-direction: column-reverse;">
-    <meta http-equiv="refresh" content="6">
+<script>setInterval(function() {
+$("#reloadContent").load(location.href+" #reloadContent>*","");
+}, 200000);</script>
+<div id = "reloadContent" style="height:300px;width:300px;overflow:auto;background-color:yellowgreen;color:white;scrollbar-base-color:gold;font-family:sans-serif;padding:10px;display: flex;flex-direction: column-reverse;">
+    <meta http-equiv="refresh" content="10">
 {% for chat in chats: %}
     <br>{% print chat %}<br>
-    location = location
 {% endfor %}
 </div>
 
@@ -16,9 +17,7 @@
     <p>Enter Chat:</p>
     <p><input type="text" name="chat" /></p>
     <p><input type="submit" value="submit"></p>
-    <p>Exit ChatRoom:</p>
-    <p><input type="button" name="exit" /></p>
-    <p><input type="submit" value="submit"></p>
+
 </form>
 
 {% endblock %}
