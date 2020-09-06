@@ -1,7 +1,7 @@
 #Use this for any flask implementation
 from flask import Flask, redirect, url_for, render_template, request, session, flash
 from datetime import timedelta
-from FirebaseHelper import pushStudent, getStudents
+from FirebaseHelper import pushStudent, getStudents, removeStudent
 
 
 app = Flask(__name__)
@@ -20,6 +20,7 @@ def login():
         email = request.form["email"]
         session["user"] = user
         session["email"] = email
+        pushStudent("LoggedIn", user, email)
         return redirect(url_for("user"))
     else:
         if "user" in session:
@@ -30,9 +31,6 @@ def login():
 @app.route("/user")
 def user():
     if "user" in session:
-        user = session["user"]
-        email = session["email"]
-        pushStudent("Zachry", user, email)
         return render_template("Locations.html")
     else:
         return redirect(url_for("login"))
@@ -52,7 +50,9 @@ def my_link():
 
 @app.route("/logout")
 def logout():
+    user = session["user"]
     session.pop("user", None)
+    removeStudent("LoggedIn", user)
     return redirect(url_for("login"))
 
 if __name__ == "__main__":
