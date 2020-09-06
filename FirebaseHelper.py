@@ -2,6 +2,7 @@
 
 from Student import Student
 import firebase_admin
+import json
 from firebase_admin import db
 from firebase_admin import credentials
 
@@ -40,14 +41,25 @@ def removeStudent(checkpoint, name):
                 newDict.update({key: value})
         ref.set(newDict)
 
-def chatBox(number, checkpoint, name, message):
+def AddChat(number, checkpoint, name, message):
     # Adds a student to the checkpoint
-    chatbox_db_name = checkpoint + "_chat"
+    chatboxdbname = checkpoint + "_chat"
     entry = name + ": " + message
-    ref = db.reference(chatbox_db_name)
-    ref.update({
-        number: message
-    })
+    ref = db.reference(chatboxdbname)
+    numbe = str(number)
+    ref.push(entry)
+
+def getChats(checkpoint):#objects at the specified checkpoint
+    chatdb = checkpoint + "_chat"
+    ref = db.reference(chatdb)
+    result = ref.get()
+    if result:
+        chats = []
+        for key, value in result.items():
+            chats.append(value)
+        return chats
+    else:
+        return []
 
 
 

@@ -1,12 +1,15 @@
 #Use this for any flask implementation
 from flask import Flask, redirect, url_for, render_template, request, session, flash
 from datetime import timedelta
-from FirebaseHelper import pushStudent, getStudents, removeStudent
+import time
+from FirebaseHelper import pushStudent, getStudents, removeStudent, AddChat, getChats
 
 
 app = Flask(__name__)
 app.secret_key = "hello"
 app.permanent_session_lifetime = timedelta(minutes=2)
+
+
 
 @app.route("/")
 def home():
@@ -15,7 +18,7 @@ def home():
 @app.route("/login", methods=["POST", "GET"])
 def login():
     if request.method == "POST":
-        #session.permanent = True
+        session.permanent = True
         user = request.form["nm"]
         email = request.form["email"]
         session["user"] = user
@@ -38,6 +41,23 @@ def user():
 def Zachary():
 
     return render_template("Zachary.html")
+
+@app.route("/ZacharyChatbox",methods=["POST", "GET"])
+
+
+def ZacharyChatbox():
+    q = " "
+    counter = 0
+    for chat in getChats("Zachry"):
+        counter += 1
+        q = q + chat + "\n"
+    ts = time.time()
+    if request.method == "POST":
+        message = request.form["chat"]
+        AddChat(ts,"Zachry", session["user"], message)
+
+
+    return render_template("ZacharyChatbox.html",content = q)
 
 @app.route('/my-link/')
 def my_link():
