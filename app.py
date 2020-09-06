@@ -44,8 +44,8 @@ def MSC():
 
     return render_template("MSC.html")
 
-@app.route('/my-link/')
-def my_link():
+@app.route('/Zachary-link/')
+def Zachary_link():
   q = " "
   counter = 0
   for student in getStudents("Zachry"):
