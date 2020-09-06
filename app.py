@@ -1,7 +1,8 @@
 #Use this for any flask implementation
 from flask import Flask, redirect, url_for, render_template, request, session, flash
 from datetime import timedelta
-from FirebaseHelper import pushStudent
+from FirebaseHelper import pushStudent, getStudents
+
 
 app = Flask(__name__)
 app.secret_key = "hello"
@@ -37,7 +38,17 @@ def user():
         return redirect(url_for("login"))
 @app.route("/Zachary")
 def Zachary():
+
     return render_template("Zachary.html")
+
+@app.route('/my-link/')
+def my_link():
+  q = " "
+  counter = 0
+  for student in getStudents("Zachry"):
+      counter += 1
+      q = q + "<br>" + str(counter)+". " + student.name + " " + student.email + "</br>"
+  return q
 
 @app.route("/logout")
 def logout():
